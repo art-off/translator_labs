@@ -1,0 +1,4 @@
+for ( abc1:=334 ; abc1<4efd ; abc1:=abc1>1 ) do
+    abc4 := abc1=34E5;
+    kek := 5;
+end
