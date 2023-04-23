@@ -18,6 +18,7 @@ GRAMMAR = '''
         =
         | left:assignment_left op:':=' right:assignment_right
         | left:binary_op_item op:compare_op right:binary_op_item
+        | type:'print' '(' arg:assignment_right ')'
         ;
     
     assignment_left 

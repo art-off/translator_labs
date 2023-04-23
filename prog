@@ -1,4 +1,5 @@
 for (index:=1 ; index<5 ; index := index + 1) do
     abc4 := index=34E5
     kek := 5
+    print(index)
 end

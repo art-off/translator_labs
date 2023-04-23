@@ -18,6 +18,9 @@ class PythonCodegen:
                 next = self.generate_py_code(ast["next"])
                 body = self.generate_py_code(ast["body"])
                 return f'''{init}\nwhile {cond}:\n{body}\t{next} '''
+            elif ast.get('type') == 'print':
+                arg = self.generate_py_code(ast["arg"])
+                return f'print({arg})'
             elif ast.get("op") is not None:
                 left = self.generate_py_code(ast["left"])
                 right = self.generate_py_code(ast["right"])
