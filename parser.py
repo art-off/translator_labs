@@ -1,3 +1,7 @@
+import json
+from tatsu import parse
+from tatsu.util import asjson
+
 GRAMMAR = '''
     @@grammar :: Laba4
     
@@ -13,26 +17,26 @@ GRAMMAR = '''
     expr
         =
         | left:assignment_left op:':=' right:assignment_right
-        | left:compare_item op:compare_op right:compare_item
+        | left:binary_op_item op:compare_op right:binary_op_item
         ;
     
     assignment_left 
         = 
-        identifier 
+        id:identifier 
         ;
     
     assignment_right 
         = 
         | expr
-        | identifier 
-        | number
+        | id:identifier 
+        | num:number
         ;
     
-    compare_item 
+    binary_op_item 
         = 
         | expr
-        | identifier 
-        | number
+        | id:identifier 
+        | num:number
         ;
     
     compare_op
@@ -40,6 +44,8 @@ GRAMMAR = '''
         | '>'
         | '<'
         | '='
+        | '+'
+        | '-'
         ;
 
     number = /[0-9][a-fA-F0-9]*/ ;
@@ -47,15 +53,6 @@ GRAMMAR = '''
 '''
 
 
-def get_prog_text() -> str:
-    with open('prog') as f:
-        return f.read()
-
-
-if __name__ == '__main__':
-    import json
-    from tatsu import parse
-    from tatsu.util import asjson
-
-    ast = parse(GRAMMAR, get_prog_text())
-    print(json.dumps(asjson(ast), indent=2))
+def get_ast_from_prog_text(prog_text: str) -> dict:
+    ast = parse(GRAMMAR, prog_text)
+    return asjson(ast)
