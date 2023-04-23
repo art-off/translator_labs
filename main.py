@@ -17,9 +17,9 @@ def main():
 
     output_source_code = PythonCodegen().generate_py_code(ast)
 
-    print("Получившаяся программа на python:")
-    print(output_source_code)
+    print(f"Получившаяся программа на python:\n'''\n{output_source_code}\n'''")
 
+    print("\nВывод программы:")
     execute_py_code(output_source_code)
 
 
